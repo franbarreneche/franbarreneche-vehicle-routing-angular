@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'vehicle-routing-angular';
+
+  lat = 28.704060;
+  long = 77.102493;
+  zoom = 15;
 }
