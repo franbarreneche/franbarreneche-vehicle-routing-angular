@@ -1,0 +1,52 @@
+<div>
+  <table mat-table [dataSource]="dataSource" class="full-width-table">
+    <!-- INDEX -->
+    <ng-container matColumnDef="n">
+      <th mat-header-cell *matHeaderCellDef> N° </th>
+      <td mat-cell *matCellDef="let site; index as i"> {{i}}
+      </td>
+    </ng-container>
+
+    <!-- LATITUDE AND LONGITUDE -->
+    <ng-container matColumnDef="latLng">
+      <th mat-header-cell *matHeaderCellDef> LatLang </th>
+      <td mat-cell *matCellDef="let site">( {{site.lat | number:'2.5'}} , {{site.lng | number:'2.5'}} )</td>
+    </ng-container>
+
+    <!-- IS DEPOT? -->
+    <ng-container matColumnDef="depot">
+      <th mat-header-cell *matHeaderCellDef> ¿Depósito? </th>
+      <td mat-cell *matCellDef="let site">
+        <button *ngIf="!site.isDepot" mat-mini-fab color="white" (click)="setAsDepot(site)">
+          <mat-icon>home</mat-icon>
+        </button>
+        <button *ngIf="site.isDepot" mat-mini-fab color="primary" (click)="unsetAsDepot(site)">
+          <mat-icon>home</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <!-- DEMAND -->
+    <ng-container matColumnDef="demand">
+      <th mat-header-cell *matHeaderCellDef> Demandas </th>
+      <td mat-cell *matCellDef="let site">
+        <mat-form-field appearance="standard">
+          <input matInput type="number" [(ngModel)]="site.demand">
+        </mat-form-field>
+      </td>
+    </ng-container>
+
+    <!-- ACTIONS -->
+    <ng-container matColumnDef="buttons">
+      <th mat-header-cell *matHeaderCellDef> Acciones </th>
+      <td mat-cell *matCellDef="let site">
+        <button mat-mini-fab color="warn" (click)="removeSite(site)" disabled>
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

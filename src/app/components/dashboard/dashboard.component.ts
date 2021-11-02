@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { map } from 'rxjs/operators';
-import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+import { Component, ViewChild } from '@angular/core';
+import { Site } from 'src/app/core/site';
+import { SiteListComponent } from '../site-list/site-list.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,7 +8,11 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-  lat = 28.704060;
-  long = 77.102493;
-  zoom = 15;
+  @ViewChild('siteTable') siteTable!: SiteListComponent;
+
+  constructor() { }
+
+  newSite(site: Site) {
+    this.siteTable.addSite(site);
+  }
 }
