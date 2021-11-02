@@ -29,7 +29,7 @@ export class SiteListComponent {
 
   setAsDepot(site: Site) {
     site.isDepot = true;
-    site.demand = 15;
+    site.demand = 0;
   }
 
   unsetAsDepot(site: Site) {
