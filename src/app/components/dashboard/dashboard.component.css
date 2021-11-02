@@ -8,6 +8,7 @@
   left: 15px;
   right: 15px;
   bottom: 15px;
+  overflow: auto;
 }
 
 .more-button {
@@ -18,8 +19,4 @@
 
 .dashboard-card-content {
   text-align: center;
-}
-
-agm-map {
-  height: 450px;
 }

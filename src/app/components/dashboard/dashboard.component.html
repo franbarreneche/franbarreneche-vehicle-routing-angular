@@ -1,12 +1,11 @@
 <div class="grid-container">
-  <h1 class="mat-h1">Enruteador de Vehiculos</h1>
+  <h1 #titulo class="mat-h1">Enruteador de Vehiculos</h1>
   <mat-grid-list cols="2" rowHeight="500px">
     <!-- MAPA -->
     <mat-grid-tile colspan="2" rowspan="1">
       <mat-card class="dashboard-card">
         <mat-card-content class="dashboard-card-content">
-          <agm-map [latitude]='lat' [longitude]='long' [zoom]="zoom">
-          </agm-map>
+          <app-mapa (siteAdd)="newSite($event)"></app-mapa>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
@@ -26,7 +25,7 @@
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
-          ACA VA LA LISTA DE SITIOS
+          <app-site-list #siteTable></app-site-list>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
