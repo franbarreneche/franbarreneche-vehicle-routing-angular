@@ -24,7 +24,9 @@ import { VehicleListComponent } from './components/vehicle-list/vehicle-list.com
 import { ModalConfirmComponent } from './components/modal-confirm/modal-confirm.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { LoaderInterceptor } from './services/loader.interceptor';
 
 @NgModule({
   declarations: [
@@ -57,8 +59,11 @@ import { HttpClientModule } from '@angular/common/http';
     MatSnackBarModule,
     MatDialogModule,
     MatSlideToggleModule,
+    NgxSpinnerModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
