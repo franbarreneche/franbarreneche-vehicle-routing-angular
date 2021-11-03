@@ -15,13 +15,9 @@
         <mat-card-header>
           <mat-card-title>
             Sitios
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-              <mat-icon>more_vert</mat-icon>
+            <button mat-mini-fab class="more-button" (click)="addSite()">
+              <mat-icon>plus_one</mat-icon>
             </button>
-            <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item>Expand</button>
-              <button mat-menu-item>Remove</button>
-            </mat-menu>
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
@@ -35,13 +31,6 @@
         <mat-card-header>
           <mat-card-title>
             Vehiculos
-            <!-- <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item>Expand</button>
-              <button mat-menu-item>Remove</button>
-            </mat-menu> -->
             <button mat-mini-fab class="more-button" (click)="addVehicle()">
               <mat-icon>plus_one</mat-icon>
             </button>

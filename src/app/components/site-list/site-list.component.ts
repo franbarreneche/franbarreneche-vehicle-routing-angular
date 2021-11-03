@@ -1,7 +1,7 @@
 import { DataSource } from '@angular/cdk/collections';
-import { Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
-import { Observable, of, ReplaySubject } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
 import { Site } from 'src/app/core/site';
 import { ToastService } from 'src/app/services/toast.service';
 
@@ -10,21 +10,34 @@ import { ToastService } from 'src/app/services/toast.service';
   templateUrl: './site-list.component.html',
   styleUrls: ['./site-list.component.css']
 })
-export class SiteListComponent {
+export class SiteListComponent implements AfterViewInit {
   @ViewChild(MatTable) table!: MatTable<Site>;
-
-  sites: Site[] = [];
-
-  dataSource = new SiteDataSource(this.sites);
-
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['n', 'latLng', 'depot', 'demand', 'buttons'];
 
   constructor(private toast: ToastService) { }
 
+  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
+  displayedColumns = ['n', 'latlng', 'depot', 'demand', 'actions'];
+
+  siteList: Site[] = [];
+
+  dataSource = new SiteDataSource(this.siteList);
+
+  ngAfterViewInit(): void {
+    this.table.dataSource = this.dataSource;
+  }
+
   addSite(site: Site) {
-    this.sites.push(site);
-    this.dataSource.setData(this.sites);
+    this.siteList = [
+      ...this.siteList,
+      site
+    ];
+    this.dataSource.setData(this.siteList);
+  }
+
+  removeSite(site: Site) {
+    this.siteList = this.siteList.filter(v => v != site);
+    this.dataSource.setData(this.siteList);
+    this.toast.showMessage("El sitio fue eliminado");
   }
 
   setAsDepot(site: Site) {
@@ -34,13 +47,6 @@ export class SiteListComponent {
 
   unsetAsDepot(site: Site) {
     site.isDepot = false;
-  }
-
-  removeSite(site: Site) {
-    this.sites = this.sites.filter(s => s != site);
-    console.log(this.sites);
-    this.dataSource.setData(this.sites);
-    this.toast.showMessage("El sitio fue eliminado");
   }
 
 }
@@ -62,4 +68,5 @@ class SiteDataSource extends DataSource<Site> {
   setData(data: Site[]) {
     this._dataStream.next(data);
   }
+
 }

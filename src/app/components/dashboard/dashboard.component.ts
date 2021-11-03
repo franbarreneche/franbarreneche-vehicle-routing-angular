@@ -23,4 +23,9 @@ export class DashboardComponent {
     let vehicle = new Vehicle(15, 0, 0);
     this.vehicleTable.addVehicle(vehicle);
   }
+
+  addSite() {
+    let site = new Site(-31, -60, 10);
+    this.siteTable.addSite(site);
+  }
 }

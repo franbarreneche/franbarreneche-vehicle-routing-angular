@@ -1,12 +1,9 @@
 import { DataSource } from '@angular/cdk/collections';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { Observable, ReplaySubject } from 'rxjs';
 import { Vehicle } from 'src/app/core/vehicle';
 import { ToastService } from 'src/app/services/toast.service';
-import { VehicleListDataSource } from './vehicle-list-datasource';
 
 @Component({
   selector: 'app-vehicle-list',
@@ -23,7 +20,7 @@ export class VehicleListComponent implements AfterViewInit {
 
   vehicleList: Vehicle[] = [];
 
-  dataSource = new ExampleDataSource(this.vehicleList);
+  dataSource = new VehicleDataSource(this.vehicleList);
 
   ngAfterViewInit(): void {
     this.table.dataSource = this.dataSource;
@@ -44,7 +41,7 @@ export class VehicleListComponent implements AfterViewInit {
   }
 }
 
-class ExampleDataSource extends DataSource<Vehicle> {
+class VehicleDataSource extends DataSource<Vehicle> {
   private _dataStream = new ReplaySubject<Vehicle[]>();
 
   constructor(initialData: Vehicle[]) {
