@@ -39,6 +39,11 @@ export class MapaComponent {
 
   constructor() { }
 
-
+  dragEnd(event: any, site: Site) {
+    const lat = event.latLng.lat();
+    const lng = event.latLng.lng();
+    site.lat = lat;
+    site.lng = lng;
+  }
 
 }

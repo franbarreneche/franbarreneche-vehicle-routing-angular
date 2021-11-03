@@ -23,10 +23,6 @@ export class DashboardComponent {
     lng: -61.929054597285784
   }
 
-  newSite(site: Site) {
-    this.siteTable.addSite(site);
-  }
-
   addVehicle() {
     let vehicle = new Vehicle(15, 0, 0);
     this.vehicleTable.addVehicle(vehicle);
