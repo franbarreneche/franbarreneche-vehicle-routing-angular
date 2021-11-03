@@ -1,5 +1,5 @@
 import { DataSource } from '@angular/cdk/collections';
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnChanges, Output, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import { Observable, ReplaySubject } from 'rxjs';
 import { Site } from 'src/app/core/site';
@@ -10,7 +10,7 @@ import { ToastService } from 'src/app/services/toast.service';
   templateUrl: './site-list.component.html',
   styleUrls: ['./site-list.component.css']
 })
-export class SiteListComponent implements AfterViewInit {
+export class SiteListComponent implements AfterViewInit, OnChanges {
   @ViewChild(MatTable) table!: MatTable<Site>;
 
   constructor(private toast: ToastService) { }
@@ -18,7 +18,11 @@ export class SiteListComponent implements AfterViewInit {
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['n', 'latlng', 'depot', 'demand', 'actions'];
 
+  @Input()
   siteList: Site[] = [];
+
+  @Output()
+  siteListChange = new EventEmitter<Site[]>();
 
   dataSource = new SiteDataSource(this.siteList);
 
@@ -26,17 +30,14 @@ export class SiteListComponent implements AfterViewInit {
     this.table.dataSource = this.dataSource;
   }
 
-  addSite(site: Site) {
-    this.siteList = [
-      ...this.siteList,
-      site
-    ];
+  ngOnChanges() {
     this.dataSource.setData(this.siteList);
   }
 
   removeSite(site: Site) {
     this.siteList = this.siteList.filter(v => v != site);
     this.dataSource.setData(this.siteList);
+    this.siteListChange.emit(this.siteList);
     this.toast.showMessage("El sitio fue eliminado");
   }
 
@@ -47,10 +48,6 @@ export class SiteListComponent implements AfterViewInit {
 
   unsetAsDepot(site: Site) {
     site.isDepot = false;
-  }
-
-  getSites(): Site[] {
-    return this.siteList;
   }
 
 }

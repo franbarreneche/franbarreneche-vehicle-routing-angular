@@ -30,7 +30,7 @@ export class DashboardComponent {
 
   addSite() {
     let site = new Site(this.mapCenter.lat, this.mapCenter.lng, 10);
-    this.siteTable.addSite(site);
-    this.sites = this.siteTable.getSites();
+    this.sites.push(site);
+    this.sites = [...this.sites];
   }
 }
