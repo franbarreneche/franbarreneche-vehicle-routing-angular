@@ -20,13 +20,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { VehicleListComponent } from './components/vehicle-list/vehicle-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     SiteListComponent,
-    MapaComponent
+    MapaComponent,
+    VehicleListComponent
   ],
   imports: [
     BrowserModule,
