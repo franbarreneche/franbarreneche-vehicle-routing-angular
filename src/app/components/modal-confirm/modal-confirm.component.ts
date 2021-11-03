@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { VehicleRoutingService } from 'src/app/services/vehicle-routing.service';
+import { RoutingSolution } from 'src/app/core/routing-solution';
 
 export interface DialogData {
   locations: { lat: number, lng: number }[];
@@ -29,9 +30,14 @@ export class ModalConfirmComponent {
     this.dialogRef.close();
   }
 
-  calcRoutes() {
-    this.routingService.getRouting(this.data).subscribe(
-      data => console.log(data)
-    );
+  get solution() {
+    // this.routingService.getRouting(this.data).subscribe(
+    //   (solution: RoutingSolution) => {
+    //     this.dialogRef.close();
+    //     return solution;
+    //   },
+    //   error => console.log(error)
+    // );
+    return this.routingService.getRouting(this.data);
   }
 }

@@ -59,9 +59,11 @@ export class DashboardComponent {
       }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe(obs => {
       console.log('The dialog was closed');
-      console.log(result);
+      obs.subscribe(
+        (result: any) => console.log(result)
+      );
     });
   }
 }

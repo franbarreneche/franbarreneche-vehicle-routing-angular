@@ -11,5 +11,5 @@
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">No</button>
-  <button mat-button (click)="calcRoutes()" color="primary" cdkFocusInitial>Enviar</button>
+  <button mat-button [mat-dialog-close]="solution" color="primary" cdkFocusInitial>Enviar</button>
 </div>
