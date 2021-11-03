@@ -39,6 +39,10 @@ export class VehicleListComponent implements AfterViewInit {
     this.dataSource.setData(this.vehicleList);
     this.toast.showMessage("El vehiculo fue eliminado");
   }
+
+  getVehicles(): Vehicle[] {
+    return this.vehicleList;
+  }
 }
 
 class VehicleDataSource extends DataSource<Vehicle> {

@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Confirmar</h1>
+<pre>
+  {{data | json}}
+</pre>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>Segundos</mat-label>
+    <input matInput type="number" [(ngModel)]="data.seconds">
+  </mat-form-field>
+  <mat-slide-toggle [(ngModel)]="data.allowDropping">Permitir dropear sitios</mat-slide-toggle>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No</button>
+  <button mat-button (click)="calcRoutes()" color="primary" cdkFocusInitial>Enviar</button>
+</div>

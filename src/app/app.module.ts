@@ -21,6 +21,10 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { VehicleListComponent } from './components/vehicle-list/vehicle-list.component';
+import { ModalConfirmComponent } from './components/modal-confirm/modal-confirm.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,10 +32,12 @@ import { VehicleListComponent } from './components/vehicle-list/vehicle-list.com
     DashboardComponent,
     SiteListComponent,
     MapaComponent,
-    VehicleListComponent
+    VehicleListComponent,
+    ModalConfirmComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAwKeHZEzQIqSLHATdUZxwPs85azq2MMeA'
@@ -49,6 +55,8 @@ import { VehicleListComponent } from './components/vehicle-list/vehicle-list.com
     MatFormFieldModule,
     MatInputModule,
     MatSnackBarModule,
+    MatDialogModule,
+    MatSlideToggleModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
