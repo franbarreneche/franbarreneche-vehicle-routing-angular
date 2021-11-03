@@ -5,7 +5,7 @@
     <mat-grid-tile colspan="2" rowspan="1">
       <mat-card class="dashboard-card">
         <mat-card-content class="dashboard-card-content">
-          <app-mapa (siteAdd)="newSite($event)"></app-mapa>
+          <app-mapa [sites]="sites" [latitude]="mapCenter.lat" [longitude]="mapCenter.lng"></app-mapa>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>

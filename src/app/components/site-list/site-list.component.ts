@@ -49,6 +49,10 @@ export class SiteListComponent implements AfterViewInit {
     site.isDepot = false;
   }
 
+  getSites(): Site[] {
+    return this.siteList;
+  }
+
 }
 
 class SiteDataSource extends DataSource<Site> {

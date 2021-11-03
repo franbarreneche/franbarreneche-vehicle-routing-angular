@@ -15,6 +15,14 @@ export class DashboardComponent {
 
   constructor() { }
 
+  sites: Site[] = [];
+  vehicles: Vehicle[] = [];
+
+  mapCenter = {
+    lat: -37.458848288870364,
+    lng: -61.929054597285784
+  }
+
   newSite(site: Site) {
     this.siteTable.addSite(site);
   }
@@ -25,7 +33,8 @@ export class DashboardComponent {
   }
 
   addSite() {
-    let site = new Site(-31, -60, 10);
+    let site = new Site(this.mapCenter.lat, this.mapCenter.lng, 10);
     this.siteTable.addSite(site);
+    this.sites = this.siteTable.getSites();
   }
 }
