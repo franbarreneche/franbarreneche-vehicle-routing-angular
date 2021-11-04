@@ -22,7 +22,7 @@ export class RoutingSolution {
 }
 
 export enum Result {
-  SUCCESS = "Success",
-  TIMEOUT = "Timeout",
-  FAIL = "Fail",
+  SUCCESS = "SUCCESS",
+  TIMEOUT = "TIMEOUT",
+  FAIL = "FAIL",
 }

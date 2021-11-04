@@ -6,6 +6,8 @@ import { VehicleListComponent } from '../vehicle-list/vehicle-list.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalConfirmComponent } from '../modal-confirm/modal-confirm.component';
 import { SolutionComponent } from 'src/app/solution/solution.component';
+import { ToastService } from 'src/app/services/toast.service';
+import { RoutingSolution, Result } from 'src/app/core/routing-solution';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,7 +18,7 @@ export class DashboardComponent {
   @ViewChild('siteTable') siteTable!: SiteListComponent;
   @ViewChild('vehicleTable') vehicleTable!: VehicleListComponent;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private toast: ToastService) { }
 
   sites: Site[] = [];
   vehicles: Vehicle[] = [];
@@ -58,15 +60,23 @@ export class DashboardComponent {
     };
     const dialogRef = this.dialog.open(ModalConfirmComponent, { data: toSend });
 
-    dialogRef.afterClosed().subscribe(obs => {
+    dialogRef.afterClosed()
+      .subscribe(obs => {
+        if (!obs) return;
       obs.subscribe(
-        (result: any) => this.dialog.open(SolutionComponent, {
-          data: {
-            sites: this.sites,
-            vehicles: vehicles,
-            solution: result
+        (result: RoutingSolution) => {
+          if (result.status != Result.SUCCESS) {
+            this.toast.showMessage(`No se pudo calcular. Código: ${result.status}`);
+            return;
           }
-        })
+          this.dialog.open(SolutionComponent, {
+            data: {
+              sites: this.sites,
+              vehicles: vehicles,
+              solution: result
+            }
+          })
+        }
       );
     });
   }

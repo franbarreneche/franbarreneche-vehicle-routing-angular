@@ -25,7 +25,10 @@ export class SolutionComponent implements OnInit {
   }
 
   colors: string[] = [
-    "#f94144",
+    "#81F564",
+    "#F26682",
+    "#476BFC",
+    "#277da1",
     "#90be6d",
     "#43aa8b",
     "#4d908e",
@@ -34,7 +37,8 @@ export class SolutionComponent implements OnInit {
     "#f8961e",
     "#f9844a",
     "#f9c74f",
-    "#277da1"
+    "#277da1",
+    "#f94144",
   ];
 
   infoWindow = {
