@@ -45,7 +45,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     HttpClientModule,
     BrowserAnimationsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAwKeHZEzQIqSLHATdUZxwPs85azq2MMeA'
+      apiKey: 'AIzaSyD0wKZK780hw96TZiSI8GZN_bzr2_RTVwQ'
     }),
     FormsModule,
     MatGridListModule,
