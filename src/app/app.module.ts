@@ -27,6 +27,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { LoaderInterceptor } from './services/loader.interceptor';
+import { SolutionComponent } from './solution/solution.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { LoaderInterceptor } from './services/loader.interceptor';
     SiteListComponent,
     MapaComponent,
     VehicleListComponent,
-    ModalConfirmComponent
+    ModalConfirmComponent,
+    SolutionComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +63,7 @@ import { LoaderInterceptor } from './services/loader.interceptor';
     MatDialogModule,
     MatSlideToggleModule,
     NgxSpinnerModule,
+    MatExpansionModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }

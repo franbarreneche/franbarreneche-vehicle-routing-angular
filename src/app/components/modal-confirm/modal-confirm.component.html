@@ -1,13 +1,24 @@
 <h1 mat-dialog-title>Confirmar</h1>
-<pre>
-  {{data | json}}
-</pre>
 <div mat-dialog-content>
   <mat-form-field appearance="fill">
     <mat-label>Segundos</mat-label>
     <input matInput type="number" [(ngModel)]="data.seconds">
   </mat-form-field>
+  <br>
   <mat-slide-toggle [(ngModel)]="data.allowDropping">Permitir dropear sitios</mat-slide-toggle>
+  <br>
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Ver el payload
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <pre>
+            {{data | json}}
+          </pre>
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">No</button>

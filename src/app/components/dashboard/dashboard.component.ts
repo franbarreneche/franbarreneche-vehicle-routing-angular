@@ -5,6 +5,7 @@ import { SiteListComponent } from '../site-list/site-list.component';
 import { VehicleListComponent } from '../vehicle-list/vehicle-list.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalConfirmComponent } from '../modal-confirm/modal-confirm.component';
+import { SolutionComponent } from 'src/app/solution/solution.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -45,24 +46,27 @@ export class DashboardComponent {
     let starts = vehicles.map(v => v.start);
     let ends = vehicles.map(v => v.end);
 
-    const dialogRef = this.dialog.open(ModalConfirmComponent, {
-      width: '250px',
-      data: {
-        locations: locations,
-        demands: demands,
-        vehicleNumber: vehicleNumber,
-        vehicleCapacities: vehicleCapacities,
-        starts: starts,
-        ends: ends,
-        seconds: 5,
-        allowDropping: false,
-      }
-    });
+    let toSend = {
+      locations: locations,
+      demands: demands,
+      vehicleNumber: vehicleNumber,
+      vehicleCapacities: vehicleCapacities,
+      starts: starts,
+      ends: ends,
+      seconds: 5,
+      allowDropping: false,
+    };
+    const dialogRef = this.dialog.open(ModalConfirmComponent, { data: toSend });
 
     dialogRef.afterClosed().subscribe(obs => {
-      console.log('The dialog was closed');
       obs.subscribe(
-        (result: any) => console.log(result)
+        (result: any) => this.dialog.open(SolutionComponent, {
+          data: {
+            sites: this.sites,
+            vehicles: vehicles,
+            solution: result
+          }
+        })
       );
     });
   }
