@@ -29,6 +29,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { LoaderInterceptor } from './services/loader.interceptor';
 import { SolutionComponent } from './solution/solution.component';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { AgmDirectionModule } from 'agm-direction';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD0wKZK780hw96TZiSI8GZN_bzr2_RTVwQ'
     }),
+    AgmDirectionModule,
     FormsModule,
     MatGridListModule,
     MatCardModule,

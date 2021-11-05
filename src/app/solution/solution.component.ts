@@ -29,10 +29,10 @@ export class SolutionComponent implements OnInit {
     "#F26682",
     "#476BFC",
     "#277da1",
-    "#90be6d",
+    "#9kbe6d",
     "#43aa8b",
-    "#4d908e",
-    "#577590",
+    "#4d9k8e",
+    "#57759k",
     "#f3722c",
     "#f8961e",
     "#f9844a",
@@ -66,8 +66,7 @@ export class SolutionComponent implements OnInit {
     },
   ];
 
-  ngOnInit(): void {
-  }
+
 
   openInfo(event: any, vehicleIndex: number, route: Route) {
     console.log(event);
@@ -83,4 +82,119 @@ export class SolutionComponent implements OnInit {
     this.infoWindow.isOpen = false;
   }
 
+  ngOnInit(): void {
+    for (let k = 0; k < this.data.vehicles.length; k++) {
+      let startIndex = this.data.vehicles[k].start;
+      let endIndex = this.data.vehicles[k].end;
+
+      this.origin.push({
+        lat: this.data.sites[startIndex].lat,
+        lng: this.data.sites[startIndex].lng
+      });
+
+      this.destination.push({
+        lat: this.data.sites[endIndex].lat,
+        lng: this.data.sites[endIndex].lng,
+      });
+
+      let points: google.maps.DirectionsWaypoint[] = [];
+      this.data.solution.routes[k].path.forEach((step, i) => {
+        if ((i !== 0) && (i !== this.data.solution.routes[k].path.length - 1)) {
+          let site = this.data.sites[step.locationIndex];
+          points.push({
+            location: new google.maps.LatLng(site.lat, site.lng),
+            stopover: true
+          });
+        }
+      });
+      this.waypoints.push(points);
+    }
+  }
+
+  origin: { lat: number, lng: number }[] = [];
+  destination: { lat: number, lng: number }[] = [];
+
+  waypoints: google.maps.DirectionsWaypoint[][] = [];
+  options = [
+    {
+      polylineOptions: {
+        strokeColor: "#81F564",
+      },
+      markerOptions: {
+        visible: false,
+      }
+    },
+    {
+      polylineOptions: {
+        strokeColor: "#F26682",
+      },
+      markerOptions: {
+        visible: false,
+      }
+    },
+    {
+      polylineOptions: {
+        strokeColor: "#476BFC",
+      },
+      markerOptions: {
+        visible: false,
+      }
+    },
+    {
+      polylineOptions: {
+        strokeColor: "#43aa8b",
+      },
+      markerOptions: {
+        visible: false,
+      }
+    },
+    {
+      polylineOptions: {
+        strokeColor: "#4d9k8e",
+      },
+      markerOptions: {
+        visible: false,
+      }
+    },
+    {
+      polylineOptions: {
+        strokeColor: "#57759k",
+      },
+      markerOptions: {
+        visible: false,
+      }
+    },
+    {
+      polylineOptions: {
+        strokeColor: "#f3722c",
+      },
+      markerOptions: {
+        visible: false,
+      }
+    },
+    {
+      polylineOptions: {
+        strokeColor: "#f8961e",
+      },
+      markerOptions: {
+        visible: false,
+      }
+    },
+    {
+      polylineOptions: {
+        strokeColor: "#f9844a",
+      },
+      markerOptions: {
+        visible: false,
+      }
+    },
+    {
+      polylineOptions: {
+        strokeColor: "#f9c74f",
+      },
+      markerOptions: {
+        visible: false,
+      }
+    },
+  ]
 }

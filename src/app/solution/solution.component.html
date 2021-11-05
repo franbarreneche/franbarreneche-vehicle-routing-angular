@@ -5,20 +5,9 @@
     <agm-marker *ngFor=" let site of data.sites; index as i" [label]="i.toString()" [latitude]="site.lat"
       [longitude]="site.lng">
     </agm-marker>
-    <agm-polyline *ngFor="let route of data.solution.routes; index as j" [strokeColor]="colors[j]"
-      (lineClick)="openInfo($event,j,route)">
-      <agm-polyline-point *ngFor="let point of route.path" [latitude]="data.sites[point.locationIndex].lat"
-        [longitude]="data.sites[point.locationIndex].lng">
-      </agm-polyline-point>
-      <agm-icon-sequence [fixedRotation]="false" offset="5%" repeat="25%" [path]="'FORWARD_OPEN_ARROW'">
-      </agm-icon-sequence>
-    </agm-polyline>
-    <agm-info-window [isOpen]="infoWindow.isOpen" [latitude]="infoWindow.lat" [longitude]="infoWindow.lng"
-      (infoWindowClose)="closeInfo()">
-      <p><strong> {{infoWindow.title}}</strong></p>
-      <p>Distancia: <em>{{infoWindow.distance| number}}mts</em> </p>
-      <p>Carga: <em>{{infoWindow.load| number}}</em></p>
-    </agm-info-window>
+    <agm-direction *ngFor="let route of data.solution.routes; index as j" [origin]="origin[j]"
+      [destination]="destination[j]" [waypoints]="waypoints[j]" [renderOptions]="options[j]">
+    </agm-direction>
   </agm-map>
 </div>
 <div mat-dialog-actions>
