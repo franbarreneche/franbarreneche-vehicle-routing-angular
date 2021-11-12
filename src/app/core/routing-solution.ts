@@ -8,6 +8,7 @@ export class RoutingSolution {
     public totalDistanceOfAllRotutes: number,
     public droppedNodes: number[],
     public routes: Route[],
+    public unusedVehicles?: number[],
   ) { }
 
   public static adapt(item: any): RoutingSolution {
@@ -16,7 +17,8 @@ export class RoutingSolution {
       item.totalLoadOfAllRoutes,
       item.totalDistanceOfAllRotutes,
       item.droppedNodes,
-      item.routes.map(Route.adapt)
+      item.routes.map(Route.adapt),
+      item.unusedVehicles
     );
   }
 }
