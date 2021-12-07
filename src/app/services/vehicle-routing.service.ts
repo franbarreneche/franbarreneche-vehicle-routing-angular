@@ -12,7 +12,7 @@ export class VehicleRoutingService {
   constructor(private http: HttpClient) { }
 
   getRouting(data: any): Observable<RoutingSolution> {
-    const URL = "http://localhost:8080/vehicleRoutingFromLocations";
+    const URL = "https://cc7c-190-112-37-152.ngrok.io/vehicleRoutingFromLocations";
 
     return this.http.post<Observable<RoutingSolution>>(URL, data)
       .pipe(
